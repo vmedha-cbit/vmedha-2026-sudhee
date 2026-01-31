@@ -8,6 +8,7 @@ import { StatsSection } from '@/components/sections/stats-section'
 import { ProductsSection } from '@/components/sections/products-section'
 import { TeamSection } from '@/components/sections/team-section'
 import { HiringSection } from '@/components/sections/hiring-section'
+import { FaqSection } from '@/components/sections/faq-section'
 import { Footer } from '@/components/sections/footer'
 import { ScrollProgress } from '@/components/animations/scroll-progress'
 
@@ -22,33 +23,36 @@ export default function HomePage() {
     <main className="relative min-h-screen bg-[#080B1F] overflow-x-hidden">
       {/* 3D Background */}
       <CosmicScene />
-      
+
       {/* Scroll progress indicator */}
       <ScrollProgress />
-      
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main content */}
       <div className="relative z-10">
         {/* Hero Section */}
         <HeroSection />
-        
+
         {/* Storytelling Sections with Scroll Reveals */}
         <StorytellingContainer />
-        
+
         {/* Stats Section */}
         <StatsSection />
-        
+
         {/* Products Section */}
         <ProductsSection />
-        
+
         {/* Team Section */}
         <TeamSection />
-        
+
+        {/* FAQ Section */}
+        <FaqSection />
+
         {/* Hiring CTA Section */}
         <HiringSection />
-        
+
         {/* Footer */}
         <Footer />
       </div>
