@@ -5,10 +5,9 @@ import { cn } from '@/lib/utils'
 
 const navItems = [
   { label: 'Home', href: '#' },
-  { label: 'Vision', href: '#vision' },
-  { label: 'Products', href: '#products' },
-  { label: 'Team', href: '#team' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about' },
+  { label: 'Events', href: '#events' },
+  { label: 'Contact Us', href: '#contact' },
 ]
 
 export function Navigation() {
@@ -27,23 +26,33 @@ export function Navigation() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-40 transition-all duration-500',
-        scrolled ? 'bg-[#080B1F]/80 backdrop-blur-lg border-b border-[#3A3F7A]/30' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        scrolled ? 'bg-[#080B1F]/95 backdrop-blur-lg shadow-lg border-b border-[#3A3F7A]/30' : 'bg-transparent'
       )}
     >
-      <nav className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              {/* Logo shape */}
-              <div className="absolute inset-0 border-2 border-[#00F2FF] rotate-45 transition-transform group-hover:rotate-[135deg] duration-500" />
-              <div className="absolute inset-2 bg-[#00F2FF]/20 rotate-45 transition-transform group-hover:rotate-[135deg] duration-500" />
-            </div>
-            <span className="font-display text-xl tracking-wider text-[#E6E9FF] hidden sm:block">
-              OPENSYS
-            </span>
-          </a>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo and Brand Name */}
+          <div className="flex items-center gap-3">
+            {/* Club Logo */}
+            <a href="#" className="flex items-center group">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+                {/* Logo design - rotating squares */}
+                <div className="absolute inset-0 border-2 border-[#00F2FF] rotate-45 transition-transform group-hover:rotate-[225deg] duration-700 ease-out" />
+                <div className="absolute inset-2 bg-gradient-to-br from-[#00F2FF]/30 to-[#6366F1]/30 rotate-45 transition-transform group-hover:rotate-[225deg] duration-700 ease-out" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-[#00F2FF] font-bold text-sm">V</span>
+                </div>
+              </div>
+            </a>
+            
+            {/* Brand Name */}
+            <a href="#" className="group">
+              <h1 className="font-display text-xl sm:text-2xl font-bold tracking-wider bg-gradient-to-r from-[#00F2FF] via-[#6366F1] to-[#00F2FF] bg-clip-text text-transparent group-hover:from-[#6366F1] group-hover:via-[#00F2FF] group-hover:to-[#6366F1] transition-all duration-500">
+                Vive-Le-Tech
+              </h1>
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -51,10 +60,10 @@ export function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
-                className="relative text-sm tracking-wider text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 group"
+                className="relative text-sm font-medium tracking-wide text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 group py-2"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#00F2FF] group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#00F2FF] to-[#6366F1] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -62,24 +71,24 @@ export function Navigation() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-[#00F2FF]/10 transition-colors"
             aria-label="Toggle menu"
           >
             <span
               className={cn(
-                'w-6 h-0.5 bg-[#00F2FF] transition-all duration-300',
+                'w-6 h-0.5 bg-[#00F2FF] transition-all duration-300 rounded-full',
                 mobileOpen && 'rotate-45 translate-y-2'
               )}
             />
             <span
               className={cn(
-                'w-6 h-0.5 bg-[#00F2FF] transition-all duration-300',
+                'w-6 h-0.5 bg-[#00F2FF] transition-all duration-300 rounded-full',
                 mobileOpen && 'opacity-0'
               )}
             />
             <span
               className={cn(
-                'w-6 h-0.5 bg-[#00F2FF] transition-all duration-300',
+                'w-6 h-0.5 bg-[#00F2FF] transition-all duration-300 rounded-full',
                 mobileOpen && '-rotate-45 -translate-y-2'
               )}
             />
@@ -90,16 +99,16 @@ export function Navigation() {
         <div
           className={cn(
             'md:hidden overflow-hidden transition-all duration-500',
-            mobileOpen ? 'max-h-64 opacity-100 mt-4' : 'max-h-0 opacity-0'
+            mobileOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="flex flex-col gap-4 py-4 border-t border-[#3A3F7A]/30">
+          <div className="flex flex-col gap-1 py-4 border-t border-[#3A3F7A]/30">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 tracking-wider"
+                className="px-4 py-3 text-[#7D7DBE] hover:text-[#00F2FF] hover:bg-[#00F2FF]/5 transition-all duration-300 tracking-wide font-medium rounded-lg"
               >
                 {item.label}
               </a>
