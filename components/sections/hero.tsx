@@ -37,7 +37,7 @@ export function HeroSection() {
       </div>
 
       {/* Glowing orb behind title */}
-      <div 
+      <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-30 blur-[100px] pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(0, 242, 255, 0.3) 0%, rgba(0, 210, 200, 0.1) 40%, transparent 70%)'
@@ -123,7 +123,7 @@ export function HeroSection() {
 
       {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080B1F] to-transparent pointer-events-none" />
-      
+
       {/* Side decorations */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-2 opacity-30">
         {[...Array(5)].map((_, i) => (
@@ -131,8 +131,8 @@ export function HeroSection() {
             key={i}
             className="w-1 bg-[#00F2FF]"
             style={{
-              height: `${20 + Math.random() * 40}px`,
-              opacity: 0.3 + Math.random() * 0.4
+              height: mounted ? `${20 + Math.random() * 40}px` : '40px',
+              opacity: mounted ? 0.3 + Math.random() * 0.4 : 0.5
             }}
           />
         ))}
@@ -143,8 +143,8 @@ export function HeroSection() {
             key={i}
             className="w-1 bg-[#00D2C8]"
             style={{
-              height: `${20 + Math.random() * 40}px`,
-              opacity: 0.3 + Math.random() * 0.4
+              height: mounted ? `${20 + Math.random() * 40}px` : '40px',
+              opacity: mounted ? 0.3 + Math.random() * 0.4 : 0.5
             }}
           />
         ))}
