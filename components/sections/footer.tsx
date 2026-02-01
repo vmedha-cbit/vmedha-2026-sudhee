@@ -1,130 +1,146 @@
 'use client'
 
+import React from 'react'
+import Image from 'next/image'
+import { Instagram, Linkedin, Globe, MapPin, Mail, Phone } from 'lucide-react'
 import { HudBadge } from '@/components/ui/hud-frame'
 
-const footerLinks = {
-  products: [
-    { label: 'OpenCore Platform', href: '#' },
-    { label: 'SysFlow Analytics', href: '#' },
-    { label: 'DevConnect Suite', href: '#' },
-    { label: 'API Documentation', href: '#' },
-  ],
-  company: [
-    { label: 'About Us', href: '#' },
-    { label: 'Careers', href: '#careers' },
-    { label: 'Blog', href: '#' },
-    { label: 'Press Kit', href: '#' },
-  ],
-  resources: [
-    { label: 'Documentation', href: '#' },
-    { label: 'Community', href: '#' },
-    { label: 'Support', href: '#' },
-    { label: 'Status', href: '#' },
-  ],
-  legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Cookie Policy', href: '#' },
-  ],
-}
+const footerStats = [
+  { icon: <Instagram size={24} />, link: "https://www.instagram.com/cbit.vmedha/#", label: "Instagram" },
+  { icon: <Linkedin size={24} />, link: "https://in.linkedin.com/company/vmedha-cbit", label: "LinkedIn" },
+  { icon: <Globe size={24} />, link: "https://vmedha-cbit.org/", label: "Website" }
+]
+
+const quickLinks = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "#about" },
+  { name: "Events", path: "#events" },
+  { name: "Contact Us", path: "#contact" }
+]
 
 export function Footer() {
   return (
     <footer id="contact" className="relative pt-20 pb-8 px-6 border-t border-[#3A3F7A]/30">
       {/* Atmospheric background with Deep Space Blue */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#080B1F] via-[#1A1C3D]/30 to-transparent pointer-events-none" />
-      
+
       {/* Subtle glow effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-[#00D2C8]/10 to-transparent blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Top section */}
-        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-16">
-          {/* Brand */}
-          <div className="lg:max-w-sm">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 border-2 border-[#00F2FF] rotate-45 animate-pulse-glow" />
-                <div className="absolute inset-2 bg-gradient-to-br from-[#00F2FF]/30 to-[#00D2C8]/20 rotate-45" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[#00F2FF] font-bold text-sm" style={{ textShadow: '0 0 10px rgba(0, 242, 255, 0.5)' }}>V</span>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+          {/* Column 1: Branding */}
+          <div className="flex flex-col gap-6">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <Image
+                  src="/vmedha-logo.png"
+                  alt="VMedha Logo"
+                  width={50}
+                  height={50}
+                  className="object-contain"
+                />
+                <h2 className="text-3xl font-extrabold tracking-[2px] bg-gradient-to-r from-[#E6E9FF] to-[#00F2FF] bg-clip-text text-transparent">
+                  VMEDHA
+                </h2>
               </div>
-              <span className="font-display text-2xl tracking-wider bg-gradient-to-r from-[#00F2FF] to-[#00D2C8] bg-clip-text text-transparent">
-                Vive-Le-Tech
-              </span>
-            </div>
-            <p className="text-[#7D7DBE] mb-6 leading-relaxed">
-              Exploring the cosmos of technology. Where innovation meets infinity. 🚀
-            </p>
-            <div className="flex gap-2">
+              <p className="text-[#7D7DBE] leading-relaxed mb-4">
+                Fostering innovation and technical excellence at CBIT. Join us in exploring the frontiers of technology.
+              </p>
               <HudBadge variant="accent" className="animate-pulse-glow">
-                <span className="text-[#E6E9FF]">{"We're Building"}</span>
+                <span className="text-[#E6E9FF]">We're Building</span>
               </HudBadge>
+            </div>
+
+            <div className="flex gap-4">
+              {footerStats.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#E6E9FF] p-2.5 bg-white/5 rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 hover:bg-[#00F2FF] hover:text-[#080B1F] hover:-translate-y-[3px] hover:shadow-[0_0_15px_#00F2FF] cursor-pointer"
+                  aria-label={item.label}
+                >
+                  {item.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="font-display text-sm tracking-wider text-[#E6E9FF] mb-4 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00D2C8] rounded-full animate-pulse-glow" />
-                Explore
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.products.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 text-sm hover:translate-x-1 inline-block">
-                      {link.label}
+          {/* Column 2: Quick Links */}
+          <div className="flex flex-col gap-6">
+            <h3 className="font-display text-sm tracking-wider text-[#E6E9FF] mb-2 uppercase flex items-center gap-2">
+              <span className="w-2 h-2 bg-[#00D2C8] rounded-full animate-pulse-glow" />
+              Quick Links
+            </h3>
+            <ul className="list-none p-0 flex flex-col gap-3">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.path}
+                    className="text-[#7D7DBE] hover:text-[#00F2FF] transition-all duration-300 text-sm hover:translate-x-1 inline-block cursor-pointer"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Contact Us */}
+          <div className="flex flex-col gap-6">
+            <h3 className="font-display text-sm tracking-wider text-[#E6E9FF] mb-2 uppercase flex items-center gap-2">
+              <span className="w-2 h-2 bg-[#00D2C8] rounded-full animate-pulse-glow" />
+              Contact Us
+            </h3>
+            <div className="flex flex-col gap-5">
+              <div className="flex gap-4 items-start">
+                <MapPin size={20} className="text-[#00F2FF] shrink-0 mt-1" />
+                <span className="text-[#7D7DBE] leading-relaxed text-sm">
+                  Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad
+                </span>
+              </div>
+              <div className="flex gap-4 items-center">
+                <Mail size={20} className="text-[#00F2FF] shrink-0" />
+                <a
+                  href="mailto:vmedhaofficial@gmail.com"
+                  className="text-[#7D7DBE] no-underline transition-colors duration-300 hover:text-[#00F2FF] cursor-pointer text-sm"
+                >
+                  vmedhaofficial@gmail.com
+                </a>
+              </div>
+
+              <div className="mt-4">
+                <h4 className="text-[12px] font-bold text-[#00F2FF] uppercase tracking-[2px] mb-4 flex items-center gap-2">
+                  <Phone size={14} className="text-[#00F2FF]" /> Contacts
+                </h4>
+                {/* Individual Contacts - Side by Side */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="group transition-all duration-300 border border-white/10 rounded-xl p-3 hover:border-[#00F2FF]/40 bg-white/5">
+                    <p className="text-[#E6E9FF] font-bold text-sm leading-tight mb-0.5 group-hover:text-[#00F2FF] transition-colors">Sai Prakash</p>
+                    <p className="text-[#7D7DBE] text-[9px] uppercase tracking-wider mb-2">General Secretary</p>
+                    <a
+                      href="tel:8341264462"
+                      className="text-[#00F2FF] font-mono text-[11px] tracking-tight no-underline hover:text-[#00D2C8] transition-colors block"
+                    >
+                      +91 83412 64462
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-display text-sm tracking-wider text-[#E6E9FF] mb-4 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00D2C8] rounded-full animate-pulse-glow" />
-                Connect
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.company.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 text-sm hover:translate-x-1 inline-block">
-                      {link.label}
+                  </div>
+
+                  <div className="group transition-all duration-300 border border-white/10 rounded-xl p-3 hover:border-[#00F2FF]/40 bg-white/5">
+                    <p className="text-[#E6E9FF] font-bold text-sm leading-tight mb-0.5 group-hover:text-[#00F2FF] transition-colors">Sai Manoj</p>
+                    <p className="text-[#7D7DBE] text-[9px] uppercase tracking-wider mb-2">Tech Team Head</p>
+                    <a
+                      href="tel:8919312156"
+                      className="text-[#00F2FF] font-mono text-[11px] tracking-tight no-underline hover:text-[#00D2C8] transition-colors block"
+                    >
+                      +91 89193 12156
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-display text-sm tracking-wider text-[#E6E9FF] mb-4 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00D2C8] rounded-full animate-pulse-glow" />
-                Learn
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.resources.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 text-sm hover:translate-x-1 inline-block">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-display text-sm tracking-wider text-[#E6E9FF] mb-4 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#00D2C8] rounded-full animate-pulse-glow" />
-                Legal
-              </h4>
-              <ul className="space-y-3">
-                {footerLinks.legal.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="text-[#7D7DBE] hover:text-[#00F2FF] transition-colors duration-300 text-sm hover:translate-x-1 inline-block">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -137,24 +153,24 @@ export function Footer() {
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-[#7D7DBE] text-sm flex items-center gap-2">
-            <span className="text-[#E6E9FF]">©</span> {new Date().getFullYear()} Vive-Le-Tech. 
-            <span className="hidden sm:inline">Crafted with</span> 
+            <span className="text-[#E6E9FF]">©</span> {new Date().getFullYear()} Vive-Le-Tech | VMedha Club.
+            <span className="hidden sm:inline">Crafted with</span>
             <span className="text-[#00D2C8] animate-pulse">✨</span>
             <span className="hidden sm:inline">in the cosmos</span>
           </div>
 
           {/* Connect button with Neon Teal accent */}
           <a
-            href="#"
+            href="#contact"
             className="group flex items-center gap-3 px-6 py-2 rounded-lg border border-[#3A3F7A] hover:border-[#00D2C8] bg-[#1A1C3D]/30 hover:bg-[#00D2C8]/10 transition-all duration-300"
           >
             <span className="text-sm tracking-wider uppercase text-[#7D7DBE] group-hover:text-[#00F2FF] transition-colors">
-              {"Let's Connect"}
+              Let's Connect
             </span>
             <span className="w-8 h-[2px] bg-gradient-to-r from-[#00F2FF] to-[#00D2C8] group-hover:w-12 transition-all duration-300" />
           </a>
         </div>
-        
+
         {/* Celestial decoration at bottom */}
         <div className="mt-8 flex justify-center gap-2 opacity-30">
           {[...Array(7)].map((_, i) => (
