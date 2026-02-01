@@ -19,33 +19,78 @@ export function HeroSection() {
     }
   }, [])
 
-  const title = 'OPENSYS'
-  const tagline = 'VIVE LE TECH'
+  const title = 'Vive-Le-Tech'
+  const tagline = 'Explore the Cosmos of Technology'
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
-      {/* Animated grid lines */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+      {/* Deep Space Atmospheric Layers */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0, 242, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0, 242, 255, 0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
-          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
-        }} />
+        {/* Deep Space Blue gradient layer */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080B1F] via-[#1A1C3D] to-[#080B1F] opacity-80" />
+        
+        {/* Main visible grid - flat */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(0, 242, 255, 0.15) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 242, 255, 0.15) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(ellipse 70% 50% at center, black 30%, transparent 70%)'
+          }}
+        />
+        
+        {/* Perspective grid at bottom - futuristic floor effect */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-[60vh]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(0, 242, 255, 0.2) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 242, 255, 0.2) 2px, transparent 2px)
+            `,
+            backgroundSize: '80px 40px',
+            transform: 'perspective(500px) rotateX(60deg)',
+            transformOrigin: 'center bottom',
+            maskImage: 'linear-gradient(to top, black 0%, transparent 80%)'
+          }}
+        />
+        
+        {/* Horizontal glow line */}
+        <div 
+          className="absolute bottom-[20%] left-0 right-0 h-[2px]"
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.5), rgba(0, 210, 200, 0.5), transparent)',
+            boxShadow: '0 0 20px rgba(0, 242, 255, 0.3), 0 0 40px rgba(0, 242, 255, 0.2)'
+          }}
+        />
       </div>
 
-      {/* Glowing orb behind title */}
+      {/* Multiple layered glowing orbs for atmospheric depth */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-30 blur-[100px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] pointer-events-none animate-pulse-glow"
         style={{
-          background: 'radial-gradient(circle, rgba(0, 242, 255, 0.3) 0%, rgba(0, 210, 200, 0.1) 40%, transparent 70%)'
+          background: 'radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, rgba(99, 102, 241, 0.2) 40%, transparent 70%)'
+        }}
+      />
+      <div 
+        className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full opacity-25 blur-[80px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(0, 210, 200, 0.3) 0%, transparent 60%)',
+          animation: 'float 4s ease-in-out infinite'
+        }}
+      />
+      <div 
+        className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full opacity-20 blur-[60px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(125, 125, 190, 0.4) 0%, transparent 70%)',
+          animation: 'float 5s ease-in-out infinite reverse'
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl">
-        {/* Badge */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-5xl">
+        {/* Futuristic Badge */}
         <div
           className="mb-8 transition-all duration-700"
           style={{
@@ -53,20 +98,25 @@ export function HeroSection() {
             transform: mounted ? 'translateY(0)' : 'translateY(-20px)'
           }}
         >
-          <HudBadge variant="accent">Building the Future</HudBadge>
+          <HudBadge variant="accent" className="animate-pulse-glow">
+            <span className="text-[#E6E9FF] tracking-widest">🚀 Welcome to the Future</span>
+          </HudBadge>
         </div>
 
-        {/* Main Title with character animation */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-wider mb-6">
+        {/* Main Title with gradient and glow */}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-wide mb-8">
           {title.split('').map((char, index) => (
             <span
               key={index}
-              className="inline-block text-glow-cyan"
+              className="inline-block"
               style={{
-                color: '#00F2FF',
+                background: char === '-' ? 'none' : 'linear-gradient(135deg, #00F2FF 0%, #00D2C8 50%, #7D7DBE 100%)',
+                WebkitBackgroundClip: char === '-' ? 'unset' : 'text',
+                WebkitTextFillColor: char === '-' ? '#3A3F7A' : 'transparent',
+                filter: char === '-' ? 'none' : 'drop-shadow(0 0 20px rgba(0, 242, 255, 0.5))',
                 opacity: titleVisible ? 1 : 0,
-                transform: titleVisible ? 'translateY(0) rotateX(0)' : 'translateY(40px) rotateX(-90deg)',
-                transition: `all 600ms cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 80}ms`
+                transform: titleVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.8)',
+                transition: `all 700ms cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 60}ms`
               }}
             >
               {char}
@@ -74,11 +124,13 @@ export function HeroSection() {
           ))}
         </h1>
 
-        {/* Tagline */}
-        <div className="overflow-hidden mb-12">
+        {/* Tagline with cosmic feel */}
+        <div className="overflow-hidden mb-6">
           <p
-            className="text-2xl md:text-3xl font-light tracking-[0.3em] text-[#7D7DBE]"
+            className="text-xl md:text-2xl font-light tracking-[0.2em] mb-2"
             style={{
+              color: '#7D7DBE',
+              textShadow: '0 0 10px rgba(125, 125, 190, 0.3)',
               opacity: subtitleVisible ? 1 : 0,
               transform: subtitleVisible ? 'translateY(0)' : 'translateY(30px)',
               transition: 'all 800ms ease-out'
@@ -87,64 +139,140 @@ export function HeroSection() {
             {tagline}
           </p>
           <p
-            className="text-lg md:text-xl text-[#E6E9FF]/70 mt-4 tracking-wide"
+            className="text-base md:text-lg text-[#E6E9FF]/80 tracking-wide max-w-2xl mx-auto leading-relaxed"
             style={{
               opacity: subtitleVisible ? 1 : 0,
               transform: subtitleVisible ? 'translateY(0)' : 'translateY(30px)',
               transition: 'all 800ms ease-out 200ms'
             }}
           >
-            Long Live Tech
+            Embark on a journey through innovation, where cutting-edge technology meets boundless creativity
           </p>
         </div>
 
-        {/* CTA Buttons */}
+        {/* Interactive Path - Electric Cyan highlight line */}
         <div
-          className="flex flex-wrap gap-4 justify-center"
+          className="w-32 h-1 mb-8 rounded-full relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(90deg, transparent, #00F2FF, transparent)',
+            boxShadow: '0 0 20px rgba(0, 242, 255, 0.5)',
+            opacity: subtitleVisible ? 1 : 0,
+            transition: 'all 800ms ease-out 300ms'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-shimmer" 
+            style={{
+              animation: 'shimmer 3s ease-in-out infinite'
+            }}
+          />
+        </div>
+
+        {/* CTA Buttons with HUD styling */}
+        <div
+          className="flex flex-wrap gap-4 justify-center mb-12"
           style={{
             opacity: subtitleVisible ? 1 : 0,
             transform: subtitleVisible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 800ms ease-out 400ms'
           }}
         >
-          <HudButton variant="primary" href="#explore">
-            Explore Our Vision
+          <HudButton variant="primary" href="#about">
+            Begin Journey
           </HudButton>
-          <HudButton href="#contact">
-            Get in Touch
+          <HudButton href="#events">
+            View Events
           </HudButton>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+      {/* Twilight Violet Landscape/Silhouette at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+        {/* Mountain/Hill silhouettes */}
+        <svg className="w-full h-32 md:h-40" viewBox="0 0 1200 200" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="hillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#3A3F7A', stopOpacity: 0.6 }} />
+              <stop offset="100%" style={{ stopColor: '#1A1C3D', stopOpacity: 0.9 }} />
+            </linearGradient>
+          </defs>
+          {/* Back mountains */}
+          <path 
+            d="M0,100 Q200,60 400,80 T800,100 T1200,90 L1200,200 L0,200 Z" 
+            fill="url(#hillGradient)" 
+            opacity="0.4"
+          />
+          {/* Mid mountains */}
+          <path 
+            d="M0,130 Q150,90 300,110 T600,120 T900,100 T1200,120 L1200,200 L0,200 Z" 
+            fill="#3A3F7A" 
+            opacity="0.6"
+          />
+          {/* Front mountains */}
+          <path 
+            d="M0,150 Q100,120 250,140 T500,145 T750,135 T1000,150 T1200,140 L1200,200 L0,200 Z" 
+            fill="#3A3F7A" 
+            opacity="0.8"
+          />
+        </svg>
+        
+        {/* Gradient fade to background */}
+        <div className="h-16 bg-gradient-to-t from-[#080B1F] via-[#1A1C3D]/50 to-transparent" />
+      </div>
+
+      {/* Scroll indicator with Electric Cyan */}
+      <div className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-20">
         <ScrollIndicator />
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080B1F] to-transparent pointer-events-none" />
-      
-      {/* Side decorations */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-2 opacity-30">
-        {[...Array(5)].map((_, i) => (
+      {/* Side HUD decorations with Neon Teal accents */}
+      <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3 opacity-40">
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="w-1 bg-[#00F2FF]"
+            className="relative"
             style={{
-              height: `${20 + Math.random() * 40}px`,
-              opacity: 0.3 + Math.random() * 0.4
+              width: '2px',
+              height: `${30 + Math.random() * 50}px`,
+              background: i % 2 === 0 ? '#00D2C8' : '#00F2FF',
+              opacity: 0.4 + Math.random() * 0.4,
+              boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(0, 210, 200, 0.3)' : 'rgba(0, 242, 255, 0.3)'}`,
+              animation: `pulse-glow ${2 + i * 0.3}s ease-in-out infinite`
             }}
           />
         ))}
       </div>
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-2 opacity-30">
-        {[...Array(5)].map((_, i) => (
+      <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3 opacity-40">
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="w-1 bg-[#00D2C8]"
+            className="relative"
             style={{
-              height: `${20 + Math.random() * 40}px`,
-              opacity: 0.3 + Math.random() * 0.4
+              width: '2px',
+              height: `${30 + Math.random() * 50}px`,
+              background: i % 2 === 0 ? '#7D7DBE' : '#00D2C8',
+              opacity: 0.4 + Math.random() * 0.4,
+              boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(125, 125, 190, 0.3)' : 'rgba(0, 210, 200, 0.3)'}`,
+              animation: `pulse-glow ${2.5 + i * 0.3}s ease-in-out infinite`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Celestial particles/stars overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-[#E6E9FF]"
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              top: `${Math.random() * 80}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.6 + 0.2,
+              boxShadow: '0 0 4px rgba(230, 233, 255, 0.5)',
+              animation: `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`
             }}
           />
         ))}
