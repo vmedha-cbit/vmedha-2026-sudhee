@@ -1,37 +1,31 @@
 'use client'
 
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
-import { HudFrame, HudBadge, HudButton } from '@/components/ui/hud-frame'
+import { HudFrame, HudBadge } from '@/components/ui/hud-frame'
 
-interface ProductCardProps {
+interface EventCardProps {
   title: string
   description: string
-  features: string[]
-  badges: string[]
+  domains: string[]
   index: number
-  ctaText: string
-  ctaHref: string
 }
 
-function ProductCard({
+function EventCard({
   title,
   description,
-  features,
-  badges,
-  index,
-  ctaText,
-  ctaHref
-}: ProductCardProps) {
+  domains,
+  index
+}: EventCardProps) {
   return (
     <ScrollReveal delay={index * 150} direction="up">
       <HudFrame
         className="h-full flex flex-col group hover:scale-[1.02] transition-transform duration-500"
         glowing
       >
-        {/* Badges */}
+        {/* Domains */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {badges.map((badge, i) => (
-            <HudBadge key={i}>{badge}</HudBadge>
+          {domains.map((domain, i) => (
+            <HudBadge key={i}>{domain}</HudBadge>
           ))}
         </div>
 
@@ -45,65 +39,31 @@ function ProductCard({
           {description}
         </p>
 
-        {/* Features */}
-        <ul className="space-y-2 mb-6">
-          {features.map((feature, i) => (
-            <li key={i} className="flex items-center gap-2 text-sm text-[#E6E9FF]/80">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00D2C8]" />
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        {/* CTA */}
-        <HudButton variant="primary" href={ctaHref} className="w-full">
-          {ctaText}
-        </HudButton>
+        {/* no CTA */}
       </HudFrame>
     </ScrollReveal>
   )
 }
 
 export function ProductsSection() {
-  const products = [
+  const events = [
     {
-      title: 'OpenCore Platform',
-      description: 'Our flagship development platform that provides the foundation for building scalable, interconnected systems.',
-      features: [
-        'Modular architecture',
-        'Real-time collaboration',
-        'Enterprise-grade security',
-        'API-first design'
-      ],
-      badges: ['Platform', 'Enterprise'],
-      ctaText: 'Explore Platform',
-      ctaHref: '#'
+      title: 'DSA Masters CBIT',
+      description:
+        "DSA Masters is a competitive coding challenge designed to test participants' problem-solving abilities using Data Structures and Algorithms. Players tackle time-bound problems of increasing difficulty, focusing on logic, efficiency, and optimized solutions. It's ideal for sharpening DSA skills and preparing for technical interviews.",
+      domains: ['DSA', 'Coding']
     },
     {
-      title: 'SysFlow Analytics',
-      description: 'Advanced analytics and monitoring solution designed to give you deep insights into your systems performance.',
-      features: [
-        'Real-time dashboards',
-        'Predictive analytics',
-        'Custom alerts',
-        'Historical data analysis'
-      ],
-      badges: ['Analytics', 'AI-Powered'],
-      ctaText: 'Try Analytics',
-      ctaHref: '#'
+      title: 'Cipherville',
+      description:
+        'Cipherville is a mystery-based problem-solving game where participants decode hidden clues to escape challenges. Players crack ciphers, analyze data, and apply logical thinking to progress through levels. Each solved clue unlocks the next mystery, testing reasoning, creativity, and teamwork.',
+      domains: ['Detective Skills', 'DBMS']
     },
     {
-      title: 'DevConnect Suite',
-      description: 'A comprehensive toolkit for developers that streamlines workflows and enhances productivity.',
-      features: [
-        'IDE integrations',
-        'Code generation',
-        'Team collaboration',
-        'CI/CD pipelines'
-      ],
-      badges: ['Developer Tools', 'Free Tier'],
-      ctaText: 'Get Started',
-      ctaHref: '#'
+      title: 'Ethitech Mania',
+      description:
+        'Ethitech Mania is a thought-provoking competition that challenges participants on aptitude, logical reasoning, and ethical decision-making through real-world technology scenarios. It encourages critical thinking and responsible innovation in today\'s tech-driven world.',
+      domains: ['Critical Thinking & Aptitude']
     }
   ]
 
@@ -119,24 +79,24 @@ export function ProductsSection() {
         {/* Section header */}
         <div className="text-center mb-16">
           <ScrollReveal>
-            <HudBadge variant="accent" className="mb-4">Our Products</HudBadge>
+            <HudBadge variant="accent" className="mb-4">Experience the Future</HudBadge>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <h2 className="text-4xl md:text-6xl font-display font-bold text-[#E6E9FF] mb-6">
-              Experience the <span className="text-[#00F2FF] text-glow-cyan">Future</span>
+              Our <span className="text-[#00F2FF] text-glow-cyan">Events</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <p className="text-xl text-[#7D7DBE] max-w-2xl mx-auto">
-              Cutting-edge solutions designed to transform how you build and scale technology.
+              Three exciting competitions and learning experiences over 17-18 February.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* Products grid */}
+        {/* Events grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <ProductCard key={index} {...product} index={index} />
+          {events.map((event, index) => (
+            <EventCard key={index} {...event} index={index} />
           ))}
         </div>
       </div>

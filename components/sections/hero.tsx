@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ScrollIndicator } from '@/components/animations/scroll-progress'
-import { HudBadge, HudButton } from '@/components/ui/hud-frame'
+import { HudBadge } from '@/components/ui/hud-frame'
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -99,7 +98,7 @@ export function HeroSection() {
           }}
         >
           <HudBadge variant="accent" className="animate-pulse-glow">
-            <span className="text-[#E6E9FF] tracking-widest">🚀 Welcome to the Future</span>
+            <span className="text-[#E6E9FF] tracking-widest">Welcome to the Future</span>
           </HudBadge>
         </div>
 
@@ -167,22 +166,7 @@ export function HeroSection() {
           />
         </div>
 
-        {/* CTA Buttons with HUD styling */}
-        <div
-          className="flex flex-wrap gap-4 justify-center mb-12"
-          style={{
-            opacity: subtitleVisible ? 1 : 0,
-            transform: subtitleVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 800ms ease-out 400ms'
-          }}
-        >
-          <HudButton variant="primary" href="#about">
-            Begin Journey
-          </HudButton>
-          <HudButton href="#events">
-            View Events
-          </HudButton>
-        </div>
+        {/* CTAs removed per request */}
       </div>
 
       {/* Twilight Violet Landscape/Silhouette at bottom */}
@@ -219,10 +203,7 @@ export function HeroSection() {
         <div className="h-16 bg-gradient-to-t from-[#080B1F] via-[#1A1C3D]/50 to-transparent" />
       </div>
 
-      {/* Scroll indicator with Electric Cyan */}
-      <div className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-20">
-        <ScrollIndicator />
-      </div>
+      {/* Scroll indicator removed per request */}
 
       {/* Side HUD decorations with Neon Teal accents */}
       <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3 opacity-40">
