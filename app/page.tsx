@@ -5,7 +5,6 @@ import { Navigation } from '@/components/sections/navigation'
 import { HeroSection } from '@/components/sections/hero'
 import { AboutSection } from '@/components/sections/about-section'
 import { ProductsSection } from '@/components/sections/products-section'
-import { TeamSection } from '@/components/sections/team-section'
 import { RoadmapSection } from '@/components/sections/roadmap-section'
 import { Footer } from '@/components/sections/footer'
 import { ScrollProgress } from '@/components/animations/scroll-progress'
@@ -52,8 +51,7 @@ export default function HomePage() {
         {/* Roadmap Section - The Journey timeline */}
         <RoadmapSection />
         
-        {/* Team Section */}
-        <TeamSection />
+        {/* Team Section removed */}
         
         {/* Footer */}
         <div id="contact">

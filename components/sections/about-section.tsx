@@ -67,90 +67,58 @@ export function AboutSection() {
         >
           {"We're a community of tech enthusiasts, innovators, and dreamers exploring the endless possibilities of technology."}
         </p>
-        <p 
-          className="text-lg md:text-xl text-[#7D7DBE]/80 text-center mb-16 max-w-3xl mx-auto transition-all duration-1000 delay-300"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
-          }}
-        >
-          {"We're a community of tech enthusiasts, innovators, and dreamers exploring the endless possibilities of technology."}
-        </p>
+        
 
-        {/* Feature cards */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: 'Innovation',
-              icon: '💡',
-              description: 'Pushing boundaries with cutting-edge technology and creative solutions',
-              color: '#00F2FF'
-            },
-            {
-              title: 'Community',
-              icon: '🤝',
-              description: 'Building a vibrant ecosystem of learners, creators, and collaborators',
-              color: '#00D2C8'
-            },
-            {
-              title: 'Impact',
-              icon: '🚀',
-              description: 'Creating meaningful change through technology and innovation',
-              color: '#7D7DBE'
-            }
-          ].map((feature, index) => (
-            <div
-              key={feature.title}
-              className="relative group transition-all duration-700"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                transitionDelay: `${400 + index * 150}ms`
-              }}
-            >
-              {/* Card background with Twilight Violet border */}
-              <div className="relative p-8 rounded-2xl border border-[#3A3F7A] bg-[#1A1C3D]/30 backdrop-blur-sm hover:border-[#00D2C8] transition-all duration-500 hover:scale-105">
-                {/* Glow effect on hover */}
-                <div 
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
-                  style={{
-                    background: `radial-gradient(circle at center, ${feature.color}20, transparent 70%)`
-                  }}
-                />
-                
-                <div className="relative z-10">
-                  {/* Icon with glow */}
-                  <div 
-                    className="text-5xl mb-4 inline-block"
-                    style={{
-                      filter: `drop-shadow(0 0 20px ${feature.color}50)`
-                    }}
-                  >
-                    {feature.icon}
+        {/* Single rectangle with three sections */}
+        <div className="mx-auto max-w-5xl transition-all duration-700" style={{opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)'}}>
+          <div className="rounded-2xl border border-[#3A3F7A] bg-[#1A1C3D]/30 backdrop-blur-sm overflow-hidden">
+            <div className="flex flex-col md:flex-row">
+              {[
+                {
+                  title: 'Innovation',
+                  icon: '💡',
+                  description: 'Pushing boundaries with cutting-edge technology and creative solutions',
+                  color: '#00F2FF'
+                },
+                {
+                  title: 'Community',
+                  icon: '🤝',
+                  description: 'Building a vibrant ecosystem of learners, creators, and collaborators',
+                  color: '#00D2C8'
+                },
+                {
+                  title: 'Impact',
+                  icon: '🚀',
+                  description: 'Creating meaningful change through technology and innovation',
+                  color: '#7D7DBE'
+                }
+              ].map((feature, index) => (
+                <div
+                  key={feature.title}
+                  className={`flex-1 p-8 ${index > 0 ? 'border-t md:border-t-0 md:border-l' : ''} border-[#3A3F7A]`}
+                >
+                  <div className="relative">
+                    <div
+                      className="text-4xl mb-4 inline-block"
+                      style={{
+                        filter: `drop-shadow(0 0 16px ${feature.color}50)`
+                      }}
+                    >
+                      {feature.icon}
+                    </div>
+
+                    <h3 className="text-2xl font-display font-bold text-[#E6E9FF] mb-3">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-[#7D7DBE] leading-relaxed">
+                      {feature.description}
+                    </p>
                   </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-2xl font-display font-bold text-[#E6E9FF] mb-4">
-                    {feature.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-[#7D7DBE] leading-relaxed">
-                    {feature.description}
-                  </p>
-                  
-                  {/* Electric Cyan accent line */}
-                  <div 
-                    className="mt-6 h-1 w-0 group-hover:w-full rounded-full transition-all duration-500"
-                    style={{
-                      background: `linear-gradient(90deg, ${feature.color}, transparent)`,
-                      boxShadow: `0 0 10px ${feature.color}50`
-                    }}
-                  />
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
         {/* Bottom decorative line with Electric Cyan */}

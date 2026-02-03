@@ -1,26 +1,20 @@
 'use client'
 
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
-import { HudFrame, HudBadge, HudButton } from '@/components/ui/hud-frame'
+import { HudFrame, HudBadge } from '@/components/ui/hud-frame'
 
 interface EventCardProps {
   title: string
   description: string
-  features: string[]
-  badges: string[]
+  domains: string[]
   index: number
-  ctaText: string
-  ctaHref: string
 }
 
 function EventCard({
   title,
   description,
-  features,
-  badges,
-  index,
-  ctaText,
-  ctaHref
+  domains,
+  index
 }: EventCardProps) {
   return (
     <ScrollReveal delay={index * 150} direction="up">
@@ -28,10 +22,10 @@ function EventCard({
         className="h-full flex flex-col group hover:scale-[1.02] transition-transform duration-500"
         glowing
       >
-        {/* Badges */}
+        {/* Domains */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {badges.map((badge, i) => (
-            <HudBadge key={i}>{badge}</HudBadge>
+          {domains.map((domain, i) => (
+            <HudBadge key={i}>{domain}</HudBadge>
           ))}
         </div>
 
@@ -45,20 +39,7 @@ function EventCard({
           {description}
         </p>
 
-        {/* Features */}
-        <ul className="space-y-2 mb-6">
-          {features.map((feature, i) => (
-            <li key={i} className="flex items-center gap-2 text-sm text-[#E6E9FF]/80">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00D2C8]" />
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        {/* CTA */}
-        <HudButton variant="primary" href={ctaHref} className="w-full">
-          {ctaText}
-        </HudButton>
+        {/* no CTA */}
       </HudFrame>
     </ScrollReveal>
   )
@@ -67,43 +48,22 @@ function EventCard({
 export function ProductsSection() {
   const events = [
     {
-      title: 'DSA MASTER CBIT',
-      description: 'Master data structures and algorithms with intensive hands-on sessions and expert guidance.',
-      features: [
-        'Industry mentors',
-        'Full day sessions',
-        '17th - 18th FEB',
-        'Round 1 & 2'
-      ],
-      badges: ['Data Structures', 'Coding'],
-      ctaText: 'Register',
-      ctaHref: '#'
+      title: 'DSA Masters CBIT',
+      description:
+        "DSA Masters is a competitive coding challenge designed to test participants' problem-solving abilities using Data Structures and Algorithms. Players tackle time-bound problems of increasing difficulty, focusing on logic, efficiency, and optimized solutions. It's ideal for sharpening DSA skills and preparing for technical interviews.",
+      domains: ['DSA', 'Coding']
     },
     {
       title: 'Cipherville',
-      description: 'Unlock the secrets of cryptography and cybersecurity in this immersive challenge.',
-      features: [
-        'Security experts',
-        'Full day sessions',
-        '17th - 18th FEB',
-        'Round 1 & 2'
-      ],
-      badges: ['Cybersecurity', 'Cryptography'],
-      ctaText: 'Register',
-      ctaHref: '#'
+      description:
+        'Cipherville is a mystery-based problem-solving game where participants decode hidden clues to escape challenges. Players crack ciphers, analyze data, and apply logical thinking to progress through levels. Each solved clue unlocks the next mystery, testing reasoning, creativity, and teamwork.',
+      domains: ['Detective Skills', 'DBMS']
     },
     {
-      title: 'Ethitechmania',
-      description: 'Explore ethical technology and AI innovation across three intensive rounds of competition and learning.',
-      features: [
-        'Tech leaders',
-        'Full day sessions',
-        '17th - 18th FEB',
-        'All 3 Rounds'
-      ],
-      badges: ['AI/ML', 'Ethics'],
-      ctaText: 'Register',
-      ctaHref: '#'
+      title: 'Ethitech Mania',
+      description:
+        'Ethitech Mania is a thought-provoking competition that challenges participants on aptitude, logical reasoning, and ethical decision-making through real-world technology scenarios. It encourages critical thinking and responsible innovation in today\'s tech-driven world.',
+      domains: ['Critical Thinking & Aptitude']
     }
   ]
 

@@ -123,3 +123,32 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Responsive base rules */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fluid, mobile-friendly base font size */
+body {
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
