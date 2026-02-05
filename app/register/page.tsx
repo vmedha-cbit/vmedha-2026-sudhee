@@ -16,14 +16,14 @@ interface FormData {
   year: '1' | '2' | '3' | '4'
   email: string
   phoneNumber: string
-  event: 'dsa-masters' | 'cipherville' | 'ethitech-mania' | 'all-events' | ''
+  event: 'dsa-master' | 'cipherville' | 'ethitech-mania' | 'all-events' | ''
 }
 
 const EVENTS = [
-  { id: 'dsa-masters', name: 'DSA Masters CBIT' },
+  { id: 'dsa-master', name: 'DSA MASTER CBIT' },
   { id: 'cipherville', name: 'Cipherville' },
   { id: 'ethitech-mania', name: 'Ethitech Mania' },
-  { id: 'all-events', name: 'All 3 Events (Combo)' }
+  { id: 'all-events', name: 'All 3 Events' }
 ]
 
 function RegisterForm() {
@@ -132,7 +132,7 @@ function RegisterForm() {
   if (isSuccess) {
     // Define group links - REPLACE THESE WITH ACTUAL LINKS
     const GROUPS = {
-      'dsa-masters': { name: 'DSA Master', link: 'https://chat.whatsapp.com/DG9q1w9i3kq0nxuAC8sQ3f?mode=gi_t' },
+      'dsa-master': { name: 'DSA Master', link: 'https://chat.whatsapp.com/DG9q1w9i3kq0nxuAC8sQ3f?mode=gi_t' },
       'cipherville': { name: 'Cipherville', link: 'https://chat.whatsapp.com/E7nmvURBwp648XRANGoguY?mode=gi_t' },
       'ethitech-mania': { name: 'Ethitech Mania', link: 'https://chat.whatsapp.com/EPnZ4QKNsesI2MnDOE7cfC?mode=gi_t' },
     }
@@ -141,7 +141,7 @@ function RegisterForm() {
     let groupsToShow: { name: string; link: string }[] = []
 
     if (formData.event === 'all-events') {
-      groupsToShow = [GROUPS['dsa-masters'], GROUPS['cipherville'], GROUPS['ethitech-mania']]
+      groupsToShow = [GROUPS['dsa-master'], GROUPS['cipherville'], GROUPS['ethitech-mania']]
     } else if (formData.event && GROUPS[formData.event as keyof typeof GROUPS]) {
       groupsToShow = [GROUPS[formData.event as keyof typeof GROUPS]]
     }
@@ -329,15 +329,32 @@ function RegisterForm() {
             {/* Branch */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-[#00F2FF] uppercase tracking-wider">Branch</label>
-              <input
-                type="text"
+              <select
                 name="branch"
                 value={formData.branch}
                 onChange={handleChange}
-                placeholder="e.g. CSE, IT, ECE..."
-                className="w-full bg-[#080B1F]/50 border border-[#3A3F7A] rounded px-4 py-3 text-[#E6E9FF] focus:border-[#00F2FF] focus:outline-none focus:ring-1 focus:ring-[#00F2FF] transition-all placeholder:text-[#7D7DBE]/50"
+                className="w-full bg-[#080B1F]/50 border border-[#3A3F7A] rounded px-4 py-3 text-[#E6E9FF] focus:border-[#00F2FF] focus:outline-none focus:ring-1 focus:ring-[#00F2FF] transition-all"
                 suppressHydrationWarning
-              />
+              >
+                <option value="">Select Branch</option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="AIML">AIML</option>
+                <option value="AI&DS">AI&DS</option>
+                <option value="CET">CET (CSE-IOT)</option>
+                <option value="CSM">CSM (CSE-AIML)</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="VLSI">VLSI</option>
+                <option value="Mech">Mech</option>
+                <option value="Prod">Prod</option>
+                <option value="Civil">Civil</option>
+                <option value="Biotech">Biotech</option>
+                <option value="Chemical">Chemical</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+                <option value="Other">Other</option>
+              </select>
               {errors.branch && <p className="text-red-400 text-xs mt-1">{errors.branch}</p>}
             </div>
 

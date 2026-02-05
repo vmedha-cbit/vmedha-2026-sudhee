@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -70,10 +71,12 @@ export function Navigation() {
                   />
                 </svg>
                 {/* Logo image - no background */}
-                <img
+                <Image
                   src="/logo1.png"
                   alt="VMEDHA Logo"
-                  className="relative w-full h-full object-contain p-2 transition-transform group-hover:scale-110 duration-500 ease-out"
+                  fill
+                  className="object-contain p-2 transition-transform group-hover:scale-110 duration-500 ease-out"
+                  sizes="(max-width: 640px) 40px, 48px"
                 />
               </div>
             </a>
@@ -84,6 +87,18 @@ export function Navigation() {
                 VMEDHA
               </h1>
             </a>
+
+            {/* Separator */}
+            <span className="text-[#3A3F7A] text-xl mx-1 font-light">|</span>
+
+            {/* Event Logo */}
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+              <Image
+                src="/vlt-circular.png"
+                alt="VIVE LE TECH"
+                fill
+              />
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -98,6 +113,12 @@ export function Navigation() {
                 <span className="absolute -bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#00F2FF] to-[#6366F1] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
+            <a
+              href="/register"
+              className="px-6 py-2 bg-[#00F2FF]/10 border border-[#00F2FF] text-[#00F2FF] text-sm font-bold tracking-widest uppercase rounded hover:bg-[#00F2FF] hover:text-[#080B1F] transition-all duration-300 shadow-[0_0_10px_rgba(0,242,255,0.2)] hover:shadow-[0_0_20px_rgba(0,242,255,0.5)]"
+            >
+              Register
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -145,6 +166,13 @@ export function Navigation() {
                 {item.label}
               </a>
             ))}
+            <a
+              href="/register"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-3 mt-2 text-[#00F2FF] border border-[#00F2FF]/30 bg-[#00F2FF]/5 hover:bg-[#00F2FF]/10 transition-all duration-300 tracking-wide font-bold uppercase rounded-lg text-center shadow-[0_0_10px_rgba(0,242,255,0.1)]"
+            >
+              Register Now
+            </a>
           </div>
         </div>
       </nav>

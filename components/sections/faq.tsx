@@ -25,7 +25,7 @@ export function Faq() {
         },
         {
             question: "How do I register for CipherVille / DSA MASTER / EthiTechMania?",
-            answer: "You can register for specific events like CipherVille, DSA Masters, and EthiTechMania through our event registration portal. Simply navigate to the specific event card on the home page and click 'Register' to secure your spot."
+            answer: "You can register for specific events like CipherVille, DSA MASTER, and EthiTechMania through our event registration portal. Simply navigate to the specific event card on the home page and click 'Register' to secure your spot."
         },
         {
             question: "Is there any registration fee?",
@@ -41,7 +41,7 @@ export function Faq() {
         },
         {
             question: "Can I participate in multiple events?",
-            answer: "Absolutely! You can register for all three events. We even have an 'All 3 Events (Combo)' option for easy registration."
+            answer: "Absolutely! You can register for all three events. We even have an 'All 3 Events' option for easy registration."
         },
         {
             question: "Can students other than CBIT participate?",

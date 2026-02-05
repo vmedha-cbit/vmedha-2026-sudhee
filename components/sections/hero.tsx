@@ -1,7 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { HudBadge } from '@/components/ui/hud-frame'
+import { HudBadge, HudButton } from '@/components/ui/hud-frame'
 import { HERO_LEFT_HUD, HERO_RIGHT_HUD, HERO_STARS } from '@/lib/seeded-random'
 
 export function Hero() {
@@ -19,7 +20,7 @@ export function Hero() {
     }
   }, [])
 
-  const title = 'Vive-Le-Tech'
+  const title = 'VIVE LE TECH'
   const tagline = 'Explore the Cosmos of Technology'
 
   return (
@@ -90,6 +91,7 @@ export function Hero() {
       />
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-5xl">
+
         {/* Futuristic Badge */}
         <div
           className="mb-8 transition-all duration-700"
@@ -104,22 +106,22 @@ export function Hero() {
         </div>
 
         {/* Main Title with gradient and glow */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-wide mb-8">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-wide mb-8 whitespace-nowrap">
           {title.split('').map((char, index) => (
             <span
               key={index}
               className="inline-block"
               style={{
-                background: char === '-' ? 'none' : 'linear-gradient(135deg, #00F2FF 0%, #00D2C8 50%, #7D7DBE 100%)',
-                WebkitBackgroundClip: char === '-' ? 'unset' : 'text',
-                WebkitTextFillColor: char === '-' ? '#3A3F7A' : 'transparent',
-                filter: char === '-' ? 'none' : 'drop-shadow(0 0 20px rgba(0, 242, 255, 0.5))',
+                background: char === ' ' ? 'none' : 'linear-gradient(135deg, #00F2FF 0%, #00D2C8 50%, #7D7DBE 100%)',
+                WebkitBackgroundClip: char === ' ' ? 'unset' : 'text',
+                WebkitTextFillColor: char === ' ' ? 'inherit' : 'transparent',
+                filter: char === ' ' ? 'none' : 'drop-shadow(0 0 20px rgba(0, 242, 255, 0.5))',
                 opacity: titleVisible ? 1 : 0,
                 transform: titleVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.8)',
                 transition: `all 700ms cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 60}ms`
               }}
             >
-              {char}
+              {char === ' ' ? '\u00A0' : char}
             </span>
           ))}
         </h1>
@@ -148,6 +150,23 @@ export function Hero() {
           >
             Embark on a journey through innovation, where cutting-edge technology meets boundless creativity
           </p>
+        </div>
+
+        {/* Register CTA */}
+        {/* Register CTA */}
+        <div
+          className="flex flex-col items-center justify-center mb-10 transition-all duration-1000 delay-300 relative z-20 gap-3"
+          style={{
+            opacity: subtitleVisible ? 1 : 0,
+            transform: subtitleVisible ? 'translateY(0)' : 'translateY(30px)'
+          }}
+        >
+          <HudButton href="#events" variant="primary" className="text-base md:text-lg px-8 py-3 md:px-10 md:py-4 font-bold tracking-widest shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:shadow-[0_0_30px_rgba(0,242,255,0.6)]">
+            REGISTER NOW
+          </HudButton>
+          <span className="text-sm font-medium text-[#00F2FF] tracking-wide animate-pulse shadow-black drop-shadow-md">
+            ✨ Free Registration for All Events
+          </span>
         </div>
 
         {/* Interactive Path - Electric Cyan highlight line */}

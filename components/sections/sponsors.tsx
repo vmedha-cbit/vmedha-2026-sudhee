@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
 import { HudFrame, HudBadge } from '@/components/ui/hud-frame'
 
@@ -48,15 +49,12 @@ export function Sponsors() {
                             >
                                 {/* Wide rectangular container - 3:1 aspect ratio */}
                                 <div className="relative aspect-[3/1] w-full overflow-hidden rounded bg-black/40 group-hover:bg-black/30 transition-colors duration-300">
-                                    <img
+                                    <Image
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="w-full h-full object-cover"
-                                        onError={(e) => {
-                                            const target = e.target as HTMLImageElement;
-                                            target.style.display = 'none';
-                                            target.parentElement!.innerHTML = `<span class="text-[#E6E9FF] text-xl font-display font-bold text-center flex items-center justify-center h-full w-full">${sponsor.name}</span>`;
-                                        }}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 896px"
                                     />
                                 </div>
                             </HudFrame>

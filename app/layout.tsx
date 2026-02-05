@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   title: 'Vive-le-tech2026',
   description: 'Long live tech - Building the future with innovation',
   icons: {
-    icon: '/logo1.png',
-    apple: '/logo1.png',
+    icon: '/VIVE_LE_TECH_logo.png',
+    apple: '/VIVE_LE_TECH_logo.png',
   },
 }
 

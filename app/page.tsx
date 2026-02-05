@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import { Navigation } from '@/components/sections/navigation'
 import { Hero } from '@/components/sections/hero'
+
 import { About } from '@/components/sections/about'
 import { Events } from '@/components/sections/events'
 import { Roadmap } from '@/components/sections/roadmap'
