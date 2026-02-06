@@ -6,7 +6,7 @@ import { HudFrame, HudBadge } from '@/components/ui/hud-frame'
 // Single sponsor - update with actual sponsor details
 const sponsor = {
     name: 'Our Sponsor',
-    logo: '/sponsors/swinfy.jpeg',
+    logo: '/sponsors/swinfy.jpg',
     website: '#'
 }
 

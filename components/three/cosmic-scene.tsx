@@ -12,7 +12,7 @@ export function CosmicScene() {
       <Canvas
         camera={{ position: [0, 0, 15], fov: 60 }}
         gl={{ antialias: true, alpha: true }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
       >
         <Suspense fallback={null}>
           <CosmicBackground />

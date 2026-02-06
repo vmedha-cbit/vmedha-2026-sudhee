@@ -67,7 +67,7 @@ export function Navigation() {
                     strokeWidth="3"
                     strokeDasharray="65 20"
                     strokeLinecap="round"
-                    style={{ filter: 'drop-shadow(0 0 6px rgba(0, 242, 255, 0.5))' }}
+                    className="md:drop-shadow-[0_0_6px_rgba(0,242,255,0.5)]"
                   />
                 </svg>
                 {/* Logo image - no background */}

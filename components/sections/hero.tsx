@@ -1,25 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { HudBadge, HudButton } from '@/components/ui/hud-frame'
 import { HERO_LEFT_HUD, HERO_RIGHT_HUD, HERO_STARS } from '@/lib/seeded-random'
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false)
-  const [titleVisible, setTitleVisible] = useState(false)
-  const [subtitleVisible, setSubtitleVisible] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    const titleTimer = setTimeout(() => setTitleVisible(true), 300)
-    const subtitleTimer = setTimeout(() => setSubtitleVisible(true), 800)
-    return () => {
-      clearTimeout(titleTimer)
-      clearTimeout(subtitleTimer)
-    }
-  }, [])
-
   const title = 'VIVE LE TECH'
   const tagline = 'Explore the Cosmos of Technology'
 
@@ -68,22 +53,22 @@ export function Hero() {
         />
       </div>
 
-      {/* Multiple layered glowing orbs for atmospheric depth */}
+      {/* Multiple layered glowing orbs for atmospheric depth - Desktop only */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] pointer-events-none animate-pulse-glow"
+        className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] pointer-events-none animate-pulse-glow"
         style={{
           background: 'radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, rgba(99, 102, 241, 0.2) 40%, transparent 70%)'
         }}
       />
       <div
-        className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full opacity-25 blur-[80px] pointer-events-none"
+        className="hidden md:block absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full opacity-25 blur-[80px] pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(0, 210, 200, 0.3) 0%, transparent 60%)',
           animation: 'float 4s ease-in-out infinite'
         }}
       />
       <div
-        className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full opacity-20 blur-[60px] pointer-events-none"
+        className="hidden md:block absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full opacity-20 blur-[60px] pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(125, 125, 190, 0.4) 0%, transparent 70%)',
           animation: 'float 5s ease-in-out infinite reverse'
@@ -92,33 +77,25 @@ export function Hero() {
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-5xl">
 
-        {/* Futuristic Badge */}
-        <div
-          className="mb-8 transition-all duration-700"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(-20px)'
-          }}
-        >
+        {/* Futuristic Badge - Immediate animation */}
+        <div className="mb-8 animate-[hero-fade-up_0.7s_ease-out_forwards]">
           <HudBadge variant="accent" className="animate-pulse-glow">
             <span className="text-[#E6E9FF] tracking-widest">Welcome to the Future</span>
           </HudBadge>
         </div>
 
-        {/* Main Title with gradient and glow */}
+        {/* Main Title with gradient and glow - CSS Staggered Animation */}
         <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-wide mb-8 whitespace-nowrap">
           {title.split('').map((char, index) => (
             <span
               key={index}
-              className="inline-block"
+              className="inline-block animate-[hero-title-reveal_700ms_cubic-bezier(0.34,1.56,0.64,1)_both]"
               style={{
                 background: char === ' ' ? 'none' : 'linear-gradient(135deg, #00F2FF 0%, #00D2C8 50%, #7D7DBE 100%)',
                 WebkitBackgroundClip: char === ' ' ? 'unset' : 'text',
                 WebkitTextFillColor: char === ' ' ? 'inherit' : 'transparent',
                 filter: char === ' ' ? 'none' : 'drop-shadow(0 0 20px rgba(0, 242, 255, 0.5))',
-                opacity: titleVisible ? 1 : 0,
-                transform: titleVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.8)',
-                transition: `all 700ms cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 60}ms`
+                animationDelay: `${index * 60}ms`
               }}
             >
               {char === ' ' ? '\u00A0' : char}
@@ -129,37 +106,24 @@ export function Hero() {
         {/* Tagline with cosmic feel */}
         <div className="overflow-hidden mb-6">
           <p
-            className="text-xl md:text-2xl font-light tracking-[0.2em] mb-2"
+            className="text-xl md:text-2xl font-light tracking-[0.2em] mb-2 animate-[hero-fade-up_0.8s_ease-out_0.8s_both]"
             style={{
               color: '#7D7DBE',
-              textShadow: '0 0 10px rgba(125, 125, 190, 0.3)',
-              opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? 'translateY(0)' : 'translateY(30px)',
-              transition: 'all 800ms ease-out'
+              textShadow: '0 0 10px rgba(125, 125, 190, 0.3)'
             }}
           >
             {tagline}
           </p>
           <p
-            className="text-base md:text-lg text-[#E6E9FF]/80 tracking-wide max-w-2xl mx-auto leading-relaxed"
-            style={{
-              opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? 'translateY(0)' : 'translateY(30px)',
-              transition: 'all 800ms ease-out 200ms'
-            }}
+            className="text-base md:text-lg text-[#E6E9FF]/80 tracking-wide max-w-2xl mx-auto leading-relaxed animate-[hero-fade-up_0.8s_ease-out_1s_both]"
           >
             Embark on a journey through innovation, where cutting-edge technology meets boundless creativity
           </p>
         </div>
 
         {/* Register CTA */}
-        {/* Register CTA */}
         <div
-          className="flex flex-col items-center justify-center mb-10 transition-all duration-1000 delay-300 relative z-20 gap-3"
-          style={{
-            opacity: subtitleVisible ? 1 : 0,
-            transform: subtitleVisible ? 'translateY(0)' : 'translateY(30px)'
-          }}
+          className="flex flex-col items-center justify-center mb-10 relative z-20 gap-3 animate-[hero-fade-up_0.8s_ease-out_1.1s_both]"
         >
           <HudButton href="#events" variant="primary" className="text-base md:text-lg px-8 py-3 md:px-10 md:py-4 font-bold tracking-widest shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:shadow-[0_0_30px_rgba(0,242,255,0.6)]">
             REGISTER NOW
@@ -171,12 +135,10 @@ export function Hero() {
 
         {/* Interactive Path - Electric Cyan highlight line */}
         <div
-          className="w-32 h-1 mb-8 rounded-full relative overflow-hidden"
+          className="w-32 h-1 mb-8 rounded-full relative overflow-hidden animate-[hero-fade-in_0.8s_ease-out_1.1s_both]"
           style={{
             background: 'linear-gradient(90deg, transparent, #00F2FF, transparent)',
-            boxShadow: '0 0 20px rgba(0, 242, 255, 0.5)',
-            opacity: subtitleVisible ? 1 : 0,
-            transition: 'all 800ms ease-out 300ms'
+            boxShadow: '0 0 20px rgba(0, 242, 255, 0.5)'
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-shimmer"
@@ -191,7 +153,7 @@ export function Hero() {
 
       {/* Twilight Violet Landscape/Silhouette at bottom */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
-        {/* Mountain/Hill silhouettes */}
+        {/* Mountain/Hill silhouettes - reusing existing SVG */}
         <svg className="w-full h-32 md:h-40" viewBox="0 0 1200 200" preserveAspectRatio="none">
           <defs>
             <linearGradient id="hillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -222,8 +184,6 @@ export function Hero() {
         {/* Gradient fade to background */}
         <div className="h-16 bg-gradient-to-t from-[#080B1F] via-[#1A1C3D]/50 to-transparent" />
       </div>
-
-      {/* Scroll indicator removed per request */}
 
       {/* Side HUD decorations with Neon Teal accents */}
       <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3 opacity-40">
@@ -259,8 +219,8 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Celestial particles/stars overlay */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Celestial particles/stars overlay - Hidden on mobile for performance */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
         {HERO_STARS.map((star, i) => (
           <div
             key={i}

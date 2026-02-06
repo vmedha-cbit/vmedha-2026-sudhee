@@ -4,11 +4,14 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Enabled by default
   },
   devIndicators: {
     appIsrStatus: false,
     buildActivity: false,
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'date-fns', 'recharts', '@radix-ui/react-dialog', '@radix-ui/react-popover'],
   },
 }
 

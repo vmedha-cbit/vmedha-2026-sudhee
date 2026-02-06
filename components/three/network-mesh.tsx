@@ -13,20 +13,20 @@ interface Node {
 export function NetworkMesh() {
   const pointsRef = useRef<THREE.Points>(null)
   const linesRef = useRef<THREE.LineSegments>(null)
-  
+
   const nodeCount = 80
   const connectionDistance = 4
 
   const { nodes, positions, linePositions } = useMemo(() => {
     const nodes: Node[] = []
     const positions = new Float32Array(nodeCount * 3)
-    
+
     // Create nodes with random positions
     for (let i = 0; i < nodeCount; i++) {
       const x = (Math.random() - 0.5) * 30
       const y = (Math.random() - 0.5) * 20
       const z = (Math.random() - 0.5) * 10 - 5
-      
+
       nodes.push({
         position: new THREE.Vector3(x, y, z),
         velocity: new THREE.Vector3(
@@ -36,12 +36,12 @@ export function NetworkMesh() {
         ),
         connections: []
       })
-      
+
       positions[i * 3] = x
       positions[i * 3 + 1] = y
       positions[i * 3 + 2] = z
     }
-    
+
     // Calculate connections
     const linePositions: number[] = []
     for (let i = 0; i < nodes.length; i++) {
@@ -57,31 +57,31 @@ export function NetworkMesh() {
         }
       }
     }
-    
+
     return { nodes, positions, linePositions: new Float32Array(linePositions) }
   }, [])
 
   useFrame((state) => {
     if (!pointsRef.current || !linesRef.current) return
-    
+
     const time = state.clock.elapsedTime
     const positionsAttr = pointsRef.current.geometry.attributes.position
     const linePositionsAttr = linesRef.current.geometry.attributes.position
-    
+
     // Animate nodes
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i]
-      
+
       // Gentle floating motion
       node.position.x += Math.sin(time * 0.5 + i) * 0.002
       node.position.y += Math.cos(time * 0.3 + i * 0.5) * 0.002
       node.position.z += Math.sin(time * 0.2 + i * 0.3) * 0.001
-      
+
       positionsAttr.array[i * 3] = node.position.x
       positionsAttr.array[i * 3 + 1] = node.position.y
       positionsAttr.array[i * 3 + 2] = node.position.z
     }
-    
+
     // Update line positions
     let lineIndex = 0
     for (let i = 0; i < nodes.length; i++) {
@@ -97,7 +97,7 @@ export function NetworkMesh() {
         }
       }
     }
-    
+
     positionsAttr.needsUpdate = true
     linePositionsAttr.needsUpdate = true
   })
@@ -112,6 +112,7 @@ export function NetworkMesh() {
             count={nodeCount}
             array={positions}
             itemSize={3}
+            args={[positions, 3]}
           />
         </bufferGeometry>
         <pointsMaterial
@@ -122,7 +123,7 @@ export function NetworkMesh() {
           sizeAttenuation
         />
       </points>
-      
+
       {/* Network connections */}
       <lineSegments ref={linesRef}>
         <bufferGeometry>
@@ -131,6 +132,7 @@ export function NetworkMesh() {
             count={linePositions.length / 3}
             array={linePositions}
             itemSize={3}
+            args={[linePositions, 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial

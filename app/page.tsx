@@ -1,17 +1,12 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
+
 import dynamic from 'next/dynamic'
+import { ViewportLazy } from '@/components/utils/view-port-lazy'
 import { Navigation } from '@/components/sections/navigation'
 import { Hero } from '@/components/sections/hero'
-
-import { About } from '@/components/sections/about'
-import { Events } from '@/components/sections/events'
-import { Roadmap } from '@/components/sections/roadmap'
-import { Sponsors } from '@/components/sections/sponsors'
-import { Faq } from '@/components/sections/faq'
-
-import { Footer } from '@/components/sections/footer'
-import { ScrollProgress } from '@/components/animations/scroll-progress'
 
 
 // Dynamic import for 3D scene to avoid SSR issues
@@ -19,8 +14,31 @@ const CosmicScene = dynamic(
   () => import('@/components/three/cosmic-scene').then(mod => ({ default: mod.CosmicScene })),
   { ssr: false }
 )
+const Roadmap = dynamic(() => import('@/components/sections/roadmap').then(mod => ({ default: mod.Roadmap })), { ssr: false })
+const Sponsors = dynamic(() => import('@/components/sections/sponsors').then(mod => ({ default: mod.Sponsors })), { ssr: false })
+const Faq = dynamic(() => import('@/components/sections/faq').then(mod => ({ default: mod.Faq })), { ssr: false })
+
+// Lazy load below-the-fold components
+const About = dynamic(() => import('@/components/sections/about').then(mod => ({ default: mod.About })), { ssr: false })
+const Events = dynamic(() => import('@/components/sections/events').then(mod => ({ default: mod.Events })), { ssr: false })
+const Footer = dynamic(() => import('@/components/sections/footer').then(mod => ({ default: mod.Footer })), { ssr: false })
+const ScrollProgress = dynamic(() => import('@/components/animations/scroll-progress').then(mod => ({ default: mod.ScrollProgress })), { ssr: false })
 
 export default function HomePage() {
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    // Only mount 3D scene on larger screens
+    // Matching tailwind 'md' breakpoint (768px)
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+
+    checkDesktop()
+    window.addEventListener('resize', checkDesktop)
+    return () => window.removeEventListener('resize', checkDesktop)
+  }, [])
+
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-[#080B1F]">
       {/* Base Background - Midnight Indigo */}
@@ -29,8 +47,12 @@ export default function HomePage() {
       {/* Atmospheric Depth Layer - Deep Space Blue gradient */}
       <div className="fixed inset-0 bg-gradient-to-b from-[#1A1C3D]/50 via-[#080B1F] to-[#080B1F] -z-10" />
 
-      {/* 3D Cosmic Background Scene */}
-      <CosmicScene />
+      {/* 3D Cosmic Background Scene - Desktop only for performance */}
+      {isDesktop && (
+        <div className="hidden md:block">
+          <CosmicScene />
+        </div>
+      )}
 
       {/* Scroll progress indicator with Electric Cyan */}
       <ScrollProgress />
@@ -45,26 +67,38 @@ export default function HomePage() {
 
         {/* About Section - Who we are */}
         <div id="about">
-          <About />
+          <ViewportLazy minHeight="80vh">
+            <About />
+          </ViewportLazy>
         </div>
 
         {/* Events Section - Our events cards */}
         <div id="events">
-          <Events />
+          <ViewportLazy minHeight="100vh">
+            <Events />
+          </ViewportLazy>
         </div>
 
         {/* Roadmap Section - The Journey timeline */}
-        <Roadmap />
+        <ViewportLazy minHeight="100vh">
+          <Roadmap />
+        </ViewportLazy>
 
         {/* Sponsors Section */}
-        <Sponsors />
+        <ViewportLazy minHeight="40vh">
+          <Sponsors />
+        </ViewportLazy>
 
         {/* FAQ Section */}
-        <Faq />
+        <ViewportLazy minHeight="50vh">
+          <Faq />
+        </ViewportLazy>
 
         {/* Footer */}
         <div id="contact">
-          <Footer />
+          <ViewportLazy minHeight="40vh">
+            <Footer />
+          </ViewportLazy>
         </div>
       </div>
 

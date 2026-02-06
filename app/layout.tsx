@@ -6,15 +6,18 @@ import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: '--font-sans'
+  variable: '--font-sans',
+  display: 'swap',
 });
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: '--font-mono'
+  variable: '--font-mono',
+  display: 'swap',
 });
 const orbitron = Orbitron({
   subsets: ["latin"],
-  variable: '--font-display'
+  variable: '--font-display',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
