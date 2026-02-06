@@ -35,18 +35,31 @@ Stores each participant's details.
 Stores the aggregated counts.
 **Document ID**: `stats` (Single document to hold all counts)
 
-**Fields**:
-```json
 {
-  "totalRegistrations": number,
-  "cbitCount": number,
-  "nonCbitCount": number,
+  "totalRegistrations": number, // Total forms submitted (Transactions)
+  "uniqueRegistrations": number, // Unique humans (New!)
+  "cbitCount": number, // Total CBIT forms
+  "uniqueCbitCount": number, // Unique CBIT humans (New!)
+  "nonCbitCount": number, // Total Non-CBIT forms
+  "uniqueNonCbitCount": number, // Unique Non-CBIT humans (New!)
   "events": {
     "dsa-masters": number,
     "cipherville": number,
     "ethitech-mania": number,
     "all-events": number
   }
+}
+```
+
+### Collection: `participants` (NEW)
+**Purpose**: To track unique humans globally across all events.
+**Document ID**: Email Address.
+**Fields**:
+```json
+{
+  "email": "string",
+  "college": "string", // To track CBIT/Non-CBIT status
+  "registeredAt": "timestamp"
 }
 ```
 

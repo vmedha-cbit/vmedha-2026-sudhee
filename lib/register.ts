@@ -111,20 +111,36 @@ export async function submitRegistration(data: RegistrationData): Promise<Regist
             batch.set(docRef, eventData)
         })
 
-        // 3. Update Counters
+        // 3. Update Counters & Unique Tracking
         const statsRef = doc(db, 'counters', 'stats')
-        const isCBIT = data.college.toUpperCase() === 'CBIT' || data.college.trim() === '' // Fallback if empty and isCBIT flag issues, but mostly reliance on boolean usually
+        const participantRef = doc(db, 'participants', sanitizedEmail)
+
+        // Check if this human exists globally
+        const participantSnap = await getDoc(participantRef)
+        const isNewUser = !participantSnap.exists()
+
+        const isCBIT = data.college.toUpperCase() === 'CBIT' || data.college.trim() === ''
         const collegeField = isCBIT ? 'cbitCount' : 'nonCbitCount'
+        const uniqueCollegeField = isCBIT ? 'uniqueCbitCount' : 'uniqueNonCbitCount'
 
-        // We need to increment the main counters. 
-        // If 'all-events', do we count as 1 registration or 3?
-        // Usually for "Total Registrations" it means unique people signups or unique seats.
-        // Let's count +1 for totalRegistrations (unique user action)
-        // But for event breakdown, +1 for each event.
-
+        // Base increments (Transaction counts - always increase)
         const increments: any = {
-            totalRegistrations: increment(1),
+            totalRegistrations: increment(1), // Forms submitted
             [collegeField]: increment(1)
+        }
+
+        // Unique increments (Only if new human)
+        if (isNewUser) {
+            increments.uniqueRegistrations = increment(1)
+            increments[uniqueCollegeField] = increment(1)
+
+            // Add to participants collection to mark as "seen"
+            batch.set(participantRef, {
+                email: data.email,
+                isCBIT: isCBIT,
+                college: data.college,
+                firstRegisteredAt: serverTimestamp()
+            })
         }
 
         targetCollections.forEach(col => {
