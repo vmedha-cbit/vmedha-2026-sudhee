@@ -132,9 +132,9 @@ function RegisterForm() {
   if (isSuccess) {
     // Define group links - REPLACE THESE WITH ACTUAL LINKS
     const GROUPS = {
-      'dsa-master': { name: 'DSA Master', link: 'https://chat.whatsapp.com/DG9q1w9i3kq0nxuAC8sQ3f?mode=gi_t' },
-      'cipherville': { name: 'Cipherville', link: 'https://chat.whatsapp.com/E7nmvURBwp648XRANGoguY?mode=gi_t' },
-      'ethitech-mania': { name: 'Ethitech Mania', link: 'https://chat.whatsapp.com/EPnZ4QKNsesI2MnDOE7cfC?mode=gi_t' },
+      'dsa-master': { name: 'DSA Master', link: 'https://chat.whatsapp.com/JGxZoJdWVaJ5SkzhzXh2tU?mode=gi_t' },
+      'cipherville': { name: 'Cipherville', link: 'https://chat.whatsapp.com/LObYfIPDpup7yhDjQzFKxr?mode=gi_t' },
+      'ethitech-mania': { name: 'Ethitech Mania', link: 'https://chat.whatsapp.com/Gh6EBNwaskZBSGNvUyU0ES?mode=gi_t' },
     }
 
     // Determine which cards to show
